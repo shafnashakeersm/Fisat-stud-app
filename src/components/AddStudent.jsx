@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import NavStudent from './NavStudent'
+import axios from 'axios'
 
 const AddStudent = () => {
     const [student, setStudent] = useState(
         {
-            "fname": "",
-            "lname": "",
+            "firstname": "",
+            "lastname": "",
             "college": "",
             "dob": "",
             "course": "",
@@ -21,6 +22,16 @@ const AddStudent = () => {
     }
     const readValue = () => {
         console.log(student)
+        axios.post("https://courseapplogix.onrender.com/addstudents",student).then(
+            (Response)=>{
+                console.log(Response.data)
+              if (Response.data.status=="success") {
+                alert("successfull")
+              } else {
+                alert("Error")
+              }
+            }
+        ).catch().finally()
     }
     return (
         <div>
@@ -32,11 +43,11 @@ const AddStudent = () => {
                             <div className="row g-3">
                                 <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
                                     <label htmlFor="" className="form-label">FIRST NAME</label>
-                                    <input type="text" className="form-control" name='fname' value={student.fname} onChange={inputHandler} />
+                                    <input type="text" className="form-control" name='firstname' value={student.firstname} onChange={inputHandler} />
                                 </div>
                                 <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
                                     <label htmlFor="" className="form-label">LAST NAME</label>
-                                    <input type="text" className="form-control" name='lname' value={student.lname} onChange={inputHandler} />
+                                    <input type="text" className="form-control" name='lastname' value={student.lastname} onChange={inputHandler} />
                                 </div>
                                 <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
                                     <label htmlFor="" className="form-label">COLLEGE</label>
@@ -44,7 +55,7 @@ const AddStudent = () => {
                                 </div>
                                 <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">
                                     <label htmlFor="" className="form-label">DOB</label>
-                                    <input type="date" id="" className="form-control" name='dob' value={student.dob} onChange={inputHandler} />
+                                    <input type="date" name='dob' id="" className="form-control"  value={student.dob} onChange={inputHandler} />
 
                                 </div>
                                 <div className="col col-12 col-sm-6 col-md-6 col-lg-6 col-xl-6 col-xxl-6">

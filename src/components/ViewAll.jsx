@@ -5,7 +5,7 @@ import NavStudent from './NavStudent'
 const ViewAll = () => {
     const [student, changeStudent] = useState([])
     const fetchData = () => {
-        axios.get("https://anishpdm.github.io/dummy-api-new/student.json").then(
+        axios.get("https://courseapplogix.onrender.com/getdata").then(
             (Response) => {
                 changeStudent(Response.data)
             }
@@ -29,7 +29,7 @@ const ViewAll = () => {
                                         <th scope="col">college</th>
                                         <th scope="col">dob</th>
                                         <th scope="col">course</th>
-                                        <th scope="col">mobile no</th>
+                                        <th scope="col">mobileno</th>
                                         <th scope="col">email</th>
                                         <th scope="col">address</th>
                                     </tr>
